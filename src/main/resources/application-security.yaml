@@ -5,21 +5,16 @@ spring:
 security:
   endpoints:
     public-endpoints:
-      - path: /**
-        methods:
-          - name: POST, GET, PUT, PATCH, DELETE
+      - path: /member-service/**
+        methods: [POST, GET, PUT, PATCH, DELETE]
     customer-endpoints:
       - path: /**
-        methods:
-          - name: POST, GET, PUT, PATCH, DELETE
+        methods: [POST, GET, PUT, PATCH, DELETE]
     manager-endpoints:
       - path: /**
-        methods:
-          - name: POST, GET, PUT, PATCH, DELETE
+        methods: [POST, GET, PUT, PATCH, DELETE]
     master-endpoints:
       - path: /**
-        methods:
-          - name: POST, GET, PUT, PATCH, DELETE
-
+        methods: [POST, GET, PUT, PATCH, DELETE]
   jwt:
     access-token-secret: ${JWT_ACCESS_TOKEN_SECRET}

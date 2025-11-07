@@ -22,28 +22,26 @@ public class SecurityConfig {
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
     @Bean
-    public SecurityWebFilterChain securityWebFilterChain(
-            ServerHttpSecurity http, JwtAuthenticationFilter jwtAuthenticationFilter) {
+    public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
         http.csrf(ServerHttpSecurity.CsrfSpec::disable)
                 .httpBasic(ServerHttpSecurity.HttpBasicSpec::disable)
                 .formLogin(ServerHttpSecurity.FormLoginSpec::disable)
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeExchange(
-                        exchanges -> {
+                        exchange -> {
                             paths.getPublicEndpoints()
                                     .forEach(
                                             route -> {
                                                 route.getMethods()
                                                         .forEach(
                                                                 httpMethod -> {
-                                                                    exchanges
-                                                                            .pathMatchers(
+                                                                    exchange.pathMatchers(
                                                                                     httpMethod,
                                                                                     route.getPath())
                                                                             .permitAll();
                                                                 });
                                             });
-                            exchanges.anyExchange().denyAll();
+                            exchange.anyExchange().denyAll();
                         });
         return http.addFilterAt(jwtAuthenticationFilter, SecurityWebFiltersOrder.AUTHENTICATION)
                 .build();
