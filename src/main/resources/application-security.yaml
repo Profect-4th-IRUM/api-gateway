@@ -1,0 +1,25 @@
+spring:
+  config:
+    activate:
+      on-profile: "security"
+security:
+  endpoints:
+    public-endpoints:
+      - path: /**
+        methods:
+          - name: POST, GET, PUT, PATCH, DELETE
+    customer-endpoints:
+      - path: /**
+        methods:
+          - name: POST, GET, PUT, PATCH, DELETE
+    manager-endpoints:
+      - path: /**
+        methods:
+          - name: POST, GET, PUT, PATCH, DELETE
+    master-endpoints:
+      - path: /**
+        methods:
+          - name: POST, GET, PUT, PATCH, DELETE
+
+  jwt:
+    access-token-secret: ${JWT_ACCESS_TOKEN_SECRET}
