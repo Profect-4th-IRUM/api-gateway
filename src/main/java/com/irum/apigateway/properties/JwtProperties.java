@@ -4,5 +4,5 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 
 @ConfigurationProperties(prefix = "security.jwt")
-@RefreshScope
+//@RefreshScope
 public record JwtProperties(String accessTokenSecret) {}
