@@ -2,6 +2,7 @@ package com.irum.apigateway.config;
 
 import com.irum.apigateway.filter.JwtAuthenticationFilter;
 import com.irum.apigateway.properties.GatewayPathProperties;
+import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,17 +30,20 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeExchange(
                         exchange -> {
-                            paths.getPublicEndpoints()
+                            paths.getPublicEndpoints().stream()
+                                    .filter(Objects::nonNull)
                                     .forEach(
                                             route -> {
-                                                route.getMethods()
-                                                        .forEach(
-                                                                httpMethod -> {
-                                                                    exchange.pathMatchers(
-                                                                                    httpMethod,
-                                                                                    route.getPath())
-                                                                            .permitAll();
-                                                                });
+                                                if (route.getMethods() != null)
+                                                    route.getMethods()
+                                                            .forEach(
+                                                                    httpMethod -> {
+                                                                        exchange.pathMatchers(
+                                                                                        httpMethod,
+                                                                                        route
+                                                                                                .getPath())
+                                                                                .permitAll();
+                                                                    });
                                             });
                             exchange.anyExchange().denyAll();
                         });
