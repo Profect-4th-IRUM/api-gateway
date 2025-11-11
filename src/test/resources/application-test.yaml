@@ -1,0 +1,5 @@
+security:
+  endpoints:
+    public-endpoints:
+      - path: /actuator/**
+        methods: [ POST, GET, PUT, PATCH, DELETE ]
