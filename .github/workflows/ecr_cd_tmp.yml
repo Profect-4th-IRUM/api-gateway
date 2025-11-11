@@ -8,7 +8,7 @@ on:
 env:
   AWS_REGION: ap-southeast-2
   ECR_REGISTRY: public.ecr.aws/k5m3t9y9
-  ECR_REPOSITORY: come2us
+  ECR_REPOSITORY: come2us-gateway
   IMAGE_TAG: ${{ github.sha }}
 
 jobs:
