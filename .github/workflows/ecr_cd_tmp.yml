@@ -5,6 +5,13 @@ on:
     branches:
       - develop
 
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Image Tag to use'
+        required: false
+        default: 'latest'
+
 env:
   AWS_REGION: ap-southeast-2
   ECR_REGISTRY: public.ecr.aws/k5m3t9y9
