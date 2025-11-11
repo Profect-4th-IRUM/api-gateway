@@ -30,6 +30,13 @@ dependencies {
     implementation 'org.springframework.cloud:spring-cloud-starter-gateway-server-webflux'
     //config
     implementation 'org.springframework.cloud:spring-cloud-starter-config'
+    // Service-Discovery
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+
+    //actuator
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'io.micrometer:micrometer-core'
+    implementation 'io.micrometer:micrometer-registry-prometheus'
 
     //Spring Security & JWT
     implementation 'org.springframework.boot:spring-boot-starter-security'
