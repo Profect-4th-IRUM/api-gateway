@@ -46,7 +46,7 @@ public class JwtAuthenticationFilter implements WebFilter {
             Claims claims =
                     Jwts.parser().verifyWith(key).build().parseSignedClaims(token).getPayload();
             String memberId = claims.getSubject();
-            String role = claims.get("TOKEN_ROLE_NAME", String.class);
+            String role = claims.get("authority", String.class);
             GrantedAuthority authority = new SimpleGrantedAuthority(role);
             Collection<GrantedAuthority> authorities = Collections.singletonList(authority);
 
