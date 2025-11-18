@@ -2,11 +2,11 @@ spring:
   application:
     name: api-gateway
   profiles:
-    active: local
-    include:
-      - routes
-      - security
-      - actuator
+    group:
+      "local": "local, routes, security, eureka, actuator"
+      "docker": "docker, routes, security, eureka, actuator"
+      "prod": "prod, routes, security, eureka, actuator"
+    active: ${PROFILE_ACTIVE:local}
 
   config:
     import: optional:configserver:${CONFIG_SERVER_URL:http://localhost:8888}
